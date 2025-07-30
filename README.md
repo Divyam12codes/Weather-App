@@ -44,9 +44,6 @@ Clone or download this repository
 
 Replace API_KEY in script.js with your own OpenWeatherMap API key:
 
-js
-Copy
-Edit
 const API_KEY = "your_api_key_here";
 Open index.html in any browser.
 
