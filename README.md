@@ -9,8 +9,9 @@ See hourly forecast and a 5-day weather forecast
 
 Get Delhi weather by default on page load
 
-🚀 Features
-Fetches real-time weather and 5-day forecast using the OpenWeatherMap API
+🚀 Features:
+
+Fetches real-time weather and 5-day forecast using the OpenWeatherMap API 
 
 Displays:
 
@@ -30,17 +31,15 @@ Option to search manually by entering the city name
 
 Responsive design using HTML, CSS, and JavaScript
 
-📁 Project Structure
-bash
-Copy
-Edit
+📁 Project Structure:
+
 weather-app/
 ├── index.html
 ├── script.js
-├── styles.css
-├── icons/           # (optional folder for additional images/icons)
+├── styles.css        
 └── README.md
-🧪 How to Use
+
+🧪 How to Use:
 Clone or download this repository
 
 Replace API_KEY in script.js with your own OpenWeatherMap API key:
@@ -53,7 +52,8 @@ Open index.html in any browser.
 
 📝 This project runs entirely on the client side — no backend or server setup needed.
 
-🛠️ Tech Stack
+🛠️ Tech Stack:
+
 HTML5
 
 CSS3
@@ -62,12 +62,14 @@ Vanilla JavaScript
 
 OpenWeatherMap API
 
-📌 Known Issues
+📌 Known Issues:
+
 The sun icon may appear dark in "clear" weather due to OpenWeatherMap's default icons.
 
 Forecast data is in 3-hour intervals — only selected time slots are shown.
 
-✅ Future Improvements
+✅ Future Improvements:
+
 Add geolocation support to fetch weather for the user's current location
 
 Dark/light mode toggle
