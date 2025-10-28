@@ -1,29 +1,27 @@
 export default async function handler(req, res) {
-  const city = req.query.city;
-  const apiKey = process.env.WEATHER_API_KEY; // stored safely on Vercel
-
-  if (!city) {
-    return res.status(400).json({ error: "City is required" });
-  }
-
   try {
-    const weatherUrl = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${apiKey}`;
-    const forecastUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&units=metric&appid=${apiKey}`;
+    const city = req.query.city || "Delhi";
+    const apiKey = process.env.WEATHER_API_KEY;
 
-    const [weatherRes, forecastRes] = await Promise.all([
-      fetch(weatherUrl),
-      fetch(forecastUrl),
-    ]);
-
-    if (!weatherRes.ok || !forecastRes.ok) {
-      throw new Error("City not found");
+    if (!apiKey) {
+      console.error("❌ Missing WEATHER_API_KEY environment variable");
+      return res.status(500).json({ error: "Missing API key" });
     }
 
-    const weatherData = await weatherRes.json();
-    const forecastData = await forecastRes.json();
+    const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+    console.log("🌍 Fetching:", url);
 
-    return res.status(200).json({ weatherData, forecastData });
+    const response = await fetch(url);
+    if (!response.ok) {
+      const text = await response.text();
+      console.error("❌ API fetch failed:", text);
+      return res.status(500).json({ error: "Weather API request failed" });
+    }
+
+    const data = await response.json();
+    return res.status(200).json(data);
   } catch (error) {
-    return res.status(500).json({ error: error.message });
+    console.error("🔥 Server error:", error);
+    return res.status(500).json({ error: "Internal Server Error" });
   }
 }
